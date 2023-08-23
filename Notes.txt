@@ -1,0 +1,294 @@
+rafce to load react component (shortcut for react component)
+
+script
+ "start":"node backend/server.js"; then start the projedt with (npm start)
+
+
+23/08/2023
+Lec 1] Project overview Of Note Zeeper a note taking platform
+-introduction to the mern stack
+
+
+Lec2] MERN Stack Project Tutorial #2 - What is MERN Stack ?
+
+-flow of project of mern stack
+
+-data flow diagram of mern stack application
+
+fronted                     backend                   db
+
+react ------->  express(webframework)
+    get/api/notes    |
+                    \|/
+                     |
+                     NodeJs(webserver)-mongoose-->  mongodb
+
+
+lets say our fronted aaplication need the list of notes from our database so what it does it maked the get requset to backend(expressjs framework) 
+-what expressjs framework does it interprete the request and send it to the server.
+and what web server does it uses a library called mongosse
+mongooes provide us lot of helpful query so we can fetch the data from monogdb
+-now you migght wondering what is this get. 
+
+there are 5 type of request 
+i   get     to get the data from the server/db
+ii  post    to save the data on the server/db
+iii put      to update the data on the server/db
+iv  delete    to delete the data from the server
+v   patch     partial modification in the existing data on        the server
+
+reactjs
+-fronted library built by facebook
+-reausble component
+-virtual dom
+-superfast
+
+NodeJs
+-js runtime built on chrome v8 engine
+-scalable webserver
+-webserver play a role of mangining api connecting fronted to db
+-basically it it the heart and brain of our application.
+-node js provide us a package manager called npm 
+-develop real time system.
+
+-expressj is node js framework
+-it heps us to build powerull routing api
+-it has detailed documentation.
+-it provide high performenanace
+
+mongodb
+-cross platform ,No Sql and document orianted
+-always on
+-high scalable
+-flexible schema
+ 
+
+
+
+Lec 3] Environment Setup
+-downlod node js LTS version
+-second things that you going to need is the text editor
+-third things is the git that you need for your project.
+-fourth things that you need the postman
+-some of the vs code extenssion
+    auto rename taking 
+    bracket parir
+    es7 react reduc graphql reactnative snippets
+    material icon theme to make folder strucure little beautiful
+    prettiear code formater
+-these were all the thing that you need to start the developing your mern stack application.
+
+
+
+
+    
+
+
+
+Lec 4] Creating First Node JS Server and Express JS API 
+
+ in root folder(notekeeper) type npm init it initialiize the directory so that we can start the development it will create a file callec packjage.json which will store our all package.
+ >>entry point server.js
+ now
+ >>rootfolder>> install expressjs using npm i express it will create node module folder which will contains our project dependencies
+ >> now create a new file called server.js which will be our entry point for the project and put this file in backend folder generally it is index.js it is depend on you what name you want to give it.
+
+ -to run project go in backed and type node server.js 
+ 
+ rootfolder>>node server.js
+-create a backend folder in rootfolder and put server.js into it. so that all the backend releted file get place inside backend folder.
+-now how to run project form root folder
+
+>> node backdend/server.js
+
+
+ >> instead of going every time in backend folder you can run project from root direcotry by writing this script to 
+ 
+ start in package.json 
+ "start":"node backend/server.js",
+
+ now to run the project in rootfolder type >>npm start
+
+  (nodemon backend/server.js) now you can run your projet from roo directory usign ( npm start command)
+
+-now its tiime to create api endpoint 
+how to get indvisual notes in the response form the server.
+so i create a api endpoint for that.
+backend>>server.js
+app.get('api/notes/:id',(req,res)=>{
+  const note = notes.find((record)=>{
+    record._id====req.params.id;
+    
+  })
+  res.send(note);
+})
+
+
+
+-next thins that i am going to explian is dotenv file.
+ what is .env file
+ - .env file contain all secrete information about your application like pass or api keys port no 
+
+ -  rootfolder>>npm install dotenv
+ create .env file in the root folder
+ 
+
+in the server.js to configure .env file 
+ - const dotenv = require("dotenv");
+ - dotenv.config();
+ now you are ready to use .env file.
+ lets see how to use for port not
+
+ - const PORT = process.env.PORT || 5000;
+
+
+now are you observe a problem whenever we are making any changes we have restart our application again and again so how to get ride of these prolme solution for thise problem is nodemon
+rootfolder>>npm install nodemon
+ >>nodemon whenever we are make some changes in the file our server will automatically restart the server.
+ -so we dont need to restart it agina and again.
+ 
+ -make changes in "start": "nodemon backend/server.js"; in the package.json
+
+
+-now its time to test our api on the postman 
+
+yeeeehhhh it is working fine..........
+server.js until now
+
+const express = require("express");
+const notes = require("./data/notes");
+const dotenv = require("dotenv");
+
+
+const app = express();
+
+//whenever you accept json data
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("API is Running.......");
+});
+
+app.get("/api/notes", (req, res) => {
+  res.json(notes);
+  console.log(req.params);
+});
+
+app.get("/api/notes/:id", (req, res) => {
+  const note = notes.find((record) => record._id === req.params.id);
+  res.send(note);
+});
+
+// app.get("/api/notes/:id", (req, res) => {
+//   const note = notes.find((n) => n._id == req.params.id);
+//   console.log(req.params);
+//   res.send(note);
+// });
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`server started on ${PORT}`);
+});
+
+
+
+
+
+Lec 5] Starting Our React JS App 
+-in this video we are going to start our react app
+-in this video we are goin to  learn how to initialize react app and how to push it to gitgub.
+
+what is create react app : when we install react app it setup base biolder plate code for  our application so that we can start as soon as possible 
+
+rootfolder>>npx create-react-app nameofapp(frontend) in root folder 
+
+
+Understanding folder structure of react
+-
+what is JSX
+-jsx is html like syntax that is used by that extend echmascript
+so that htm like syntax can coexit with react code in the past we put js file in html code but now with the help of react we can put html in js so this is the power of reactjs
+
+- if you want to write js somewhere write in curly braces ex const var = 10;
+if you want to use above var then use 
+<div> hello h{var}</div>
+
+--- react frag  ment <></> 
+
+-push code to github
+since we are pushing our code so we need to switch back to root dir
+
+
+
+
+
+Vid6 : landing page and navbar with react bootstrap
+install react bootstrap in frontend folder : npm install react-bootstrap
+react bootstrap is completly built on top of bootstrap
+
+// container what container help us to do it fit contain according to windows size 
+
+
+
+Vid7 creating my note page with react-router-dom
+
+installing react router dom  in frontend folder npm install react-router-dom
+
+-return (
+    <>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/mynotes" element={<MyNotes />} />
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
+    </>
+  );
+
+
+
+
+  ******the pagees which is common to all keep then outside Routes component as mentioned above
+
+
+  Vid8 connecting backend to frontend
+  -in this tut we are going to connect froned to backend
+  -but the the problem is here is that our frontend is running on port 3000 and backend on port 5000
+  -mynote is the component where we are going to call our API
+  -for that we need to first install AXIOS frontend folder to call our API we can use fetch api but axios provide some more funcitonality that is also user friendly
+  -so useEffect is a function or a react hooks that is fired whenever a component is render -inside this hook we are going to our API , so as soon as page is rendere we are call our api
+  -inside useeffect we cannot directaly call our api we have to make another function
+
+
+-CORS policy
+
+  --cores error in cosole beacuse of server and frontend running on different port to fix this error in frontend package.json top section after private sectin 3 no from top "proxy": "http://127.0.0.1:5000", add this script this script will fix this error("proxy": "http://127.0.0.1:5000",)
+
+
+--As we can see we have to sepearatly start frontedn and backend is there any way by which we can start fornedn and backend on one command yes there is for that we need to install concurrently(npm install concurrently) in root folder
+-- "start": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"" write above script in root package.json script object and then 
+    run in root folder
+    >>npm run dev this command
+
+
+Vid9 connecting mongodb to express js
+got to mongodb site and create a new cluster then add user then network access then come back to your project 
+-install mongoose in your root directory so what is mongoose so mongoose basically providing use querry for us to coonnect our express js to mongodb
+got site and connect then copy url from site which is
+--mongodb+srv://shubham_sonawane:<password>@cluster0.nkgos64.mongodb.net/?retryWrites=true&w=majority
+copy above qury in dotenv file with the const MONGO_URI= query
+
+Vid10 user Authentication sign in and signup   
+create new folder routes and controller
+so these routes folder have individual routes
+
+install some dependencies npm i bodb.netcryptjs express-async-handler jsonwebtoken 
+bcrypt is used for encrypting our password
+jwt is used to create a tokern for user
+so we are going to store our users data in our database so for that we need to create a model for our user
