@@ -1,3 +1,5 @@
+
+23/08/2023
 rafce to load react component (shortcut for react component)
 
 script
@@ -218,15 +220,42 @@ if you want to use above var then use
 
 -push code to github
 since we are pushing our code so we need to switch back to root dir
+ git init 
+ git status
+ git add .     to add all the file
+ git commit -m "message for commit"
+
+ to add remote origin
+ git remote add origin urlfrom githubrepo
+
+ git push origin master           
 
 
 
 
 
-Vid6 : landing page and navbar with react bootstrap
-install react bootstrap in frontend folder : npm install react-bootstrap
+
+24/08/2023
+___________________________________________________________
+
+
+Lec 6] landing page and navbar with react bootstrap
+
+install react bootstrap in frontend folder
+frontend>> npm install react-bootstrap
 react bootstrap is completly built on top of bootstrap
 
+create a folder for components  in src folder
+components
+   -header>>Header.js/jsx
+   -footer>>Footer.js/jsx
+
+
+install react bootstrap in frontend folder
+frontend>> npm install react-bootstrap
+react bootstrap is completly built on top of bootstrap
+
+   
 // container what container help us to do it fit contain according to windows size 
 
 
@@ -259,7 +288,7 @@ installing react router dom  in frontend folder npm install react-router-dom
   -in this tut we are going to connect froned to backend
   -but the the problem is here is that our frontend is running on port 3000 and backend on port 5000
   -mynote is the component where we are going to call our API
-  -for that we need to first install AXIOS frontend folder to call our API we can use fetch api but axios provide some more funcitonality that is also user friendly
+  -for that we need to first install AXIOS in the  frontend folder to call our API we can use fetch api but axios provide some more funcitonality that is also user friendly
   -so useEffect is a function or a react hooks that is fired whenever a component is render -inside this hook we are going to our API , so as soon as page is rendere we are call our api
   -inside useeffect we cannot directaly call our api we have to make another function
 
@@ -272,17 +301,30 @@ installing react router dom  in frontend folder npm install react-router-dom
 --As we can see we have to sepearatly start frontedn and backend is there any way by which we can start fornedn and backend on one command yes there is for that we need to install concurrently(npm install concurrently) in root folder
 -- "start": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"" write above script in root package.json script object and then 
+    "dev": "concurrently \"npm start\" \"npm run client\"" write above script in root package.json script object and then 
     run in root folder
     >>npm run dev this command
 
-
-Vid9 connecting mongodb to express js
+Lec 9] Connecting MongoDB to Node JS / Express JS
 got to mongodb site and create a new cluster then add user then network access then come back to your project 
+
 -install mongoose in your root directory so what is mongoose so mongoose basically providing use querry for us to coonnect our express js to mongodb
+
 got site and connect then copy url from site which is
 --mongodb+srv://shubham_sonawane:<password>@cluster0.nkgos64.mongodb.net/?retryWrites=true&w=majority
+
 copy above qury in dotenv file with the const MONGO_URI= query
+
+
+-now go in the backend folder and create a folder called configu  int that config folder create db.js 
+
+-create connceDB() method in db.js to connect with db and called int in server.js
+
+
+
+
+
+
 
 Vid10 user Authentication sign in and signup   
 create new folder routes and controller

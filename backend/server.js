@@ -3,13 +3,13 @@ const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
-const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
+// const { errorHandler, notFound } = require("./middlewares/errorMiddleware");
 
 const app = express();
 
 dotenv.config();
 
-// connectDB();
+connectDB();
 
 //whenever you accept json data
 app.use(express.json());
